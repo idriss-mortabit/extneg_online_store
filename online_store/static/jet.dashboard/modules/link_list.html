@@ -1,0 +1,23 @@
+{% load humanize %}
+<ul>
+{% for ticket in module.children %}
+<li>
+<span class="float-right">
+<span class="dim">
+{{ ticket.date_add|naturalday }} <span class="icon-clock
+˓→tooltip" title="{{ ticket.date_add }}"></span>
+</span>
+</span>
+{% if ticket.forwarded %}
+<span class="icon-tick" style="color: #8ecb8e;"></span>
+{% else %}
+<span class="icon-cross" style="color: #dba4a4;"></span>
+{% endif %}
+<a href="{{ ticket.get_admin_url }}">{{ ticket.name }}</a>
+</li>
+{% empty %}
+<li>
+Nothing to show
+</li>
+{% endfor %}
+</ul>
